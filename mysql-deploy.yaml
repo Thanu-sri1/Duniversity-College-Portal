@@ -30,17 +30,17 @@ spec:
         - name: MARIADB_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: duuniversity-secret
+              name: my-secret
               key: MARIADB_ROOT_PASSWORD
         - name: DB_USER
           valueFrom:
             secretKeyRef:
-              name: duuniversity-secret
+              name: my-secret
               key: DB_USER
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: duuniversity-secret
+              name: my-secret
               key: DB_PASSWORD
 
         volumeMounts:
