@@ -4,5 +4,5 @@ metadata:
   name: duuni-config
   namespace: thanu-ns1
 data:
-  DB_HOST: mariadb
-  DB_PORT: 3306
+  DB_HOST: "mariadb"
+  DB_PORT: "3306"
