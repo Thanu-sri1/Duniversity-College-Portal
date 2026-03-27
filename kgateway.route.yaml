@@ -20,5 +20,5 @@ spec:
               replacePrefixMatch: /
       backendRefs:
         - name: du-svc
-          port: 3000
+          port: 3001
  
