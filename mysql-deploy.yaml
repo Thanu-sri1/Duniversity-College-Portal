@@ -46,17 +46,22 @@ spec:
         volumeMounts:
         - name: dumysql-storage
           mountPath: /var/lib/mysql
+        - name: mysql-q
+          mountPath: /docker-entrypoint-initdb.d  
       volumes:
       - name: dumysql-storage
         persistentVolumeClaim:
-            claimName: dudynamic-pvc    
+            claimName: dudynamic-pvc   
+      - name: mysql-q
+        configMap:
+          name: mysql-init      
 
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: dumysql-svc
+  name: mariadb
   namespace: thanu-ns1
 spec:
   selector:
