@@ -27,11 +27,11 @@ spec:
             memory: "512Mi"
 
         env:
-        - name: MARIADB_ROOT_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: my-secret
-              key: MARIADB_ROOT_PASSWORD
+              key: MYSQL_ROOT_PASSWORD
         - name: DB_USER
           valueFrom:
             secretKeyRef:
