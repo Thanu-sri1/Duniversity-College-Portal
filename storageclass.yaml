@@ -5,5 +5,5 @@ metadata:
 provisioner: nfs.csi.k8s.io
 parameters:
   server: 10.0.1.212
-  path: /var/nfs/general/duuniversity
+  share: /var/nfs/general/duuniversity
   readOnly: "false"
