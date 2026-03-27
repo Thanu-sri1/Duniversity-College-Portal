@@ -32,16 +32,16 @@ spec:
             secretKeyRef:
               name: my-secret
               key: MYSQL_ROOT_PASSWORD
-        - name: DB_USER
+        - name: MYSQLDB_USER
           valueFrom:
             secretKeyRef:
               name: my-secret
-              key: DB_USER
-        - name: DB_PASSWORD
+              key: MYSQLDB_USER
+        - name: MYSQLDB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: my-secret
-              key: DB_PASSWORD
+              key: MYSQLDB_PASSWORD
 
         volumeMounts:
         - name: dumysql-storage

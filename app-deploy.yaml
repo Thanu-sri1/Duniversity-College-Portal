@@ -41,16 +41,16 @@ spec:
             configMapKeyRef:
               name: duuni-config
               key: DB_PORT 
-        - name: DB_USER
+        - name: MYSQLDB_USER
           valueFrom:
             secretKeyRef:
               name: my-secret
-              key: DB_USER
-        - name: DB_PASSWORD
+              key: MYSQLDB_USER
+        - name: MYSQLDB_PASSWORD
           valueFrom:
             secretKeyRef:
               name: my-secret
-              key: DB_PASSWORD
+              key: MYSQLDB_PASSWORD
 
 ---
 apiVersion: v1
