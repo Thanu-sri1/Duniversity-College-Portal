@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: thanu-ns1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:8
+        ports:
+        - containerPort: 3306
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+
+        env:
+        - name: MARIADB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: duuni-secret
+              key: MARIADB_ROOT_PASSWORD
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: duuni-secret
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: duuni-secret
+              key: DB_PASSWORD
+
+        volumeMounts:
+        - name: dumysql-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: dumysql-storage
+        persistentVolumeClaim:
+            claimName: dudynamic-pvc    
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dumysql-svc
+  namespace: thanu-ns1
+spec:
+  selector:
+    app: mysql
+  ports:
+    port: 3306
+    targetPort: 3306
+type: ClusterIP    
