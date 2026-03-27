@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: college-app
+  name: university-deploy
   namespace: thanu-ns1
 spec:
   replicas: 2
@@ -22,7 +22,7 @@ spec:
       - name: app
         image: nimeshsv814/duniversity-portal:v1.1.0
         ports:
-        - containerPort: 3000
+          - containerPort: 3000
         resources:
           requests:
             cpu: "200m"
@@ -62,6 +62,6 @@ spec:
   selector:
     app: college-app
   ports:
-    - port: 3000
+    - port: 3001
       targetPort: 3000
   type: ClusterIP    
