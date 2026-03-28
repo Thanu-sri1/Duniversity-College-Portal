@@ -1,10 +1,17 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: mysql-deploy
   namespace: thanu-ns1
 spec:
-  replicas: 1
+  
+  replicas: 3
+  minReadySecond: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   selector:
     matchLabels:
       app: mysql
@@ -13,6 +20,7 @@ spec:
       labels:
         app: mysql
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
       - name: mysql-cont
         image: mysql
@@ -48,14 +56,25 @@ spec:
           mountPath: /var/lib/mysql
         - name: mysql-q
           mountPath: /docker-entrypoint-initdb.d  
-      volumes:
-      - name: dumysql-storage
-        persistentVolumeClaim:
-            claimName: dudynamic-pvc   
+      volumeClaimTemplates:
+      - metadata:
+          name: thanu-vct
+        spec:
+          storageClassName: du-sc
+          accessModes: ["ReadWriteMany"] 
+          resources:
+            requests:
+              storage: "2Gi"   
+
+
+      # - name: dumysql-storage
+      #   persistentVolumeClaim:
+      #       claimName: dudynamic-pvc 
+      volumes:  
       - name: mysql-q
         configMap:
-          name: mysql-init      
-
+          name: mysql-init /
+      
 
 ---
 apiVersion: v1
@@ -69,4 +88,4 @@ spec:
   ports:
     - port: 3306
       targetPort: 3306
-  type: ClusterIP    
+  clusterIP: None                                                                                                                                                                                                                                                                                         
