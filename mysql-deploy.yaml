@@ -4,10 +4,10 @@ metadata:
   name: mysql-deploy
   namespace: thanu-ns1
 spec:
-  
+  serviceName: mariadb
   replicas: 3
   minReadySecond: 10
-  strategy:
+  updateStrategy:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
