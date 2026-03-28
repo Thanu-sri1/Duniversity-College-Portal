@@ -4,7 +4,7 @@ metadata:
   name: mysql-deploy
   namespace: thanu-ns1
 spec:
-  replicas: 3
+  replicas: 1
   minReadySeconds: 10
   # updateStrategy:
   #   type: RollingUpdate
