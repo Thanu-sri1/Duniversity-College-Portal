@@ -4,7 +4,7 @@ metadata:
   name: mysql-deploy
   namespace: thanu-ns1
 spec:
-  serviceName: mariadb
+  serviceName: mariadb1
   replicas: 3
   minReadySeconds: 10
   # updateStrategy:
@@ -81,7 +81,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mariadb
+  name: mariadb1
   namespace: thanu-ns1
 spec:
   selector:
@@ -89,4 +89,5 @@ spec:
   ports:
     - port: 3306
       targetPort: 3306
+  type: ClusterIP      
   clusterIP: None                                                                                                                                                                                                                                                                                         
