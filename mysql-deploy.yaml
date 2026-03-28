@@ -52,7 +52,7 @@ spec:
               key: MYSQLDB_PASSWORD
 
         volumeMounts:
-        - name: dumysql-storage
+        - name: thanu-vct
           mountPath: /var/lib/mysql
         - name: mysql-q
           mountPath: /docker-entrypoint-initdb.d  
