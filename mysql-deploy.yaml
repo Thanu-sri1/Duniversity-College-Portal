@@ -6,12 +6,12 @@ metadata:
 spec:
   serviceName: mariadb
   replicas: 3
-  minReadySecond: 10
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
+  minReadySeconds: 10
+  # updateStrategy:
+  #   type: RollingUpdate
+  #   # rollingUpdate:
+  #   #   maxUnavailable: 1
+  #   #   maxSurge: 1
   selector:
     matchLabels:
       app: mysql
@@ -23,7 +23,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysql-cont
-        image: mysql
+        image: mysql.8.0
         ports:
           - containerPort: 3306
         resources:
@@ -56,7 +56,12 @@ spec:
           mountPath: /var/lib/mysql
         - name: mysql-q
           mountPath: /docker-entrypoint-initdb.d  
-      volumeClaimTemplates:
+      volumes:  
+      - name: mysql-q
+        configMap:
+          name: mysql-init 
+      
+  volumeClaimTemplates:
       - metadata:
           name: thanu-vct
         spec:
@@ -70,10 +75,6 @@ spec:
       # - name: dumysql-storage
       #   persistentVolumeClaim:
       #       claimName: dudynamic-pvc 
-      volumes:  
-      - name: mysql-q
-        configMap:
-          name: mysql-init /
       
 
 ---
