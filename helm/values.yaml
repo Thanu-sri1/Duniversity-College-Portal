@@ -1,7 +1,7 @@
 app: 
   name: university-deploy
 
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: nimeshsv814/duniversity-portal
