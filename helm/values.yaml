@@ -1,0 +1,11 @@
+app: 
+  name: university-deploy
+
+replicaCount: 2
+
+image:
+  respository: nimeshsv814/duniversity-portal:v1.1.0
+  tag: v1.1.0
+
+ports:
+  containerPort: 3000
