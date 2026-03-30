@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: du-sc
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: 10.0.1.212
+  share: /var/nfs/general/duuniversity
+  

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: duuni-config
+  namespace: thanu-ns1
+data:
+  DB_HOST: "mariadb"
+  DB_PORT: "3306"
+  GRIEVANCE_DB: "grievance_db"
+  LEAVE_DB: "leave_db"
+  TIMETABLE_DB: "timetable_db"
+  EXAMS_DB: "exams_db"

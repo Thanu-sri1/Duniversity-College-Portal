@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: university-deploy
+  namespace: thanu-ns1
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: college-app
+  template:
+    metadata:
+      labels:
+        app: college-app  
+    spec: 
+      containers:
+      - name: app
+        image: nimeshsv814/duniversity-portal:v1.1.0
+        ports:
+          - containerPort: 3000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"   
+        env:
+        - name: DB_HOST  
+          valueFrom:
+            configMapKeyRef:
+              name: duuni-config
+              key: DB_HOST
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: duuni-config
+              key: DB_PORT 
+        - name: MYSQLDB_USER
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: MYSQLDB_USER
+        - name: MYSQLDB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: MYSQLDB_PASSWORD
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: du-svc
+  namespace: thanu-ns1
+spec:
+  selector:
+    app: college-app
+  ports:
+    - port: 3001
+      targetPort: 3000
+  type: ClusterIP    

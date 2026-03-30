@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-deploy
+  namespace: thanu-ns1
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  # updateStrategy:
+  #   type: RollingUpdate
+  #   # rollingUpdate:
+  #   #   maxUnavailable: 1
+  #   #   maxSurge: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mysql-cont
+        image: mysql
+        ports:
+          - containerPort: 3306
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "200m"
+            memory: "512Mi"
+
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: MYSQL_ROOT_PASSWORD
+        - name: MYSQLDB_USER
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: MYSQLDB_USER
+        - name: MYSQLDB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: MYSQLDB_PASSWORD
+
+        volumeMounts:
+        - name: thanu-vct
+          mountPath: /var/lib/mysql
+        - name: mysql-q
+          mountPath: /docker-entrypoint-initdb.d  
+      volumes:  
+      - name: mysql-q
+        configMap:
+          name: mysql-init 
+      
+  volumeClaimTemplates:
+      - metadata:
+          name: thanu-vct
+        spec:
+          storageClassName: du-sc
+          accessModes: ["ReadWriteMany"] 
+          resources:
+            requests:
+              storage: "2Gi"   
+
+
+      # - name: dumysql-storage
+      #   persistentVolumeClaim:
+      #       claimName: dudynamic-pvc 
+      
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+  namespace: thanu-ns1
+spec:
+  selector:
+    app: mysql
+  ports:
+    - port: 3306
+      targetPort: 3306
+  type: ClusterIP      
+  clusterIP: None                                                                                                                                                                                                                                                                                         
