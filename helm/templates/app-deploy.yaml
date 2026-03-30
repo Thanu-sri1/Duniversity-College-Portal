@@ -20,9 +20,9 @@ spec:
     spec: 
       containers:
       - name: app
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image: {{.Values.image.repository}}:{{.Values.image.tag}}
         ports:
-          - containerPort: {{ .Values.ports.containerPort }}
+          - containerPort: {{.Values.ports.containerPort}}
         resources:
           requests:
             cpu: "100m"
