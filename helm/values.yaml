@@ -12,7 +12,7 @@ ports:
 
 
 backend: 
-  name:  mysql-deploy
+  name: mysql-deploy
 
 replicaCount1: 3
 
