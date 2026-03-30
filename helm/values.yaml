@@ -18,6 +18,7 @@ replicaCount1: 3
 
 backend_image: 
   repository: mysql
+  tag: 8.0
 
 back_ports:
   containerPort: 3306  
