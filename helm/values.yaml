@@ -17,7 +17,7 @@ backend:
 replicaCount1: 3
 
 backend_image: 
-  repository:  mysql
+  repository: mysql
 
-ports:
+back_ports:
   containerPort: 3306  

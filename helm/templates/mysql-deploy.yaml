@@ -22,9 +22,9 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysql-cont
-        image: {{ .Values.image.repository }}
+        image: {{ .Values.backend_image.repository }}
         ports:
-          - containerPort: {{ .Values.ports.containerPort }}
+          - containerPort: {{ .Values.back_ports.containerPort }}
         resources:
           requests:
             cpu: "100m"
