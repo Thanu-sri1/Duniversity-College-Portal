@@ -20,4 +20,4 @@ backend_image:
   tag: 8.0
 
 back_ports:
-  containerPort: 3306  
+  containerPort: 3306
