@@ -9,3 +9,15 @@ image:
 
 ports:
   containerPort: 3000
+
+
+backend: 
+  name:  mysql-deploy
+
+replicaCount1: 3
+
+backend_image: 
+  repository:  mysql
+
+ports:
+  containerPort: 3306  
