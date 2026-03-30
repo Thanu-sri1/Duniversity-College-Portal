@@ -13,8 +13,7 @@ ports:
 
 backend: 
   name: mysql-deploy
-
-replicaCount1: 3
+  replicaCount: 3
 
 backend_image: 
   repository: mysql

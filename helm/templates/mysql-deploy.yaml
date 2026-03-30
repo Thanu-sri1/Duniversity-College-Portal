@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.backend.name }}
   namespace: thanu-ns1
 spec:
-  replicas: {{ .Values.replicaCount1 }}
+  replicas: {{ .Values.backend.replicaCount }}
   minReadySeconds: 10
   # updateStrategy:
   #   type: RollingUpdate
