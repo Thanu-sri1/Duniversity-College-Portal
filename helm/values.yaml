@@ -4,7 +4,7 @@ app:
 replicaCount: 2
 
 image:
-  repository: nimeshsv814/duniversity-portal:v1.1.0
+  repository: nimeshsv814/duniversity-portal
   tag: v1.1.0
 
 ports:
