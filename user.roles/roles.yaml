@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: pod-reader
-  namespace: thanu-ns1
+  namespace: default
 rules:
 - apiGroups: ["v1"]
   resources: ["pods"]
