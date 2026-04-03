@@ -1,8 +1,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: cluster-pod-reader
+  name: thanu-clusterrole
 rules:
 - apiGroups: [""]
   resources: ["pods","nodes",namespaces]
-  verbs: ["get", "list", "watch"]
+  verbs: ["get", "list", "watch","patch","delete","update"]
