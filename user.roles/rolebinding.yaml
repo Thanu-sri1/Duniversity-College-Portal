@@ -10,7 +10,6 @@ subjects:
 - kind: User
   name: thanu-sa
   namespace: thanu-ns1
-  apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: thanu-role
