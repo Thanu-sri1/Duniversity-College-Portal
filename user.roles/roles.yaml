@@ -4,6 +4,6 @@ metadata:
   name: pod-reader
   namespace: thanu-ns1
 rules:
-- apiGroups: ["v1"]
+- apiGroups: [""]
   resources: ["pods"]
   verbs: ["get","watch","list"]
