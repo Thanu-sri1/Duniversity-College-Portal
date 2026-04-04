@@ -35,16 +35,6 @@ spec:
                       operator: In
                       values:
                         - xyz           
-          podAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                - key: abc
-                  operator: In
-                  values:
-                  - xyz
-                
-              topologyKey: "kubernetes.io/hostname"
       containers:
       - name: app
         image: {{.Values.image.repository}}:{{.Values.image.tag}}
