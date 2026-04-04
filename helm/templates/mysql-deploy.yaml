@@ -20,7 +20,16 @@ spec:
         app: mysql
     spec:
       affinity:
-        podAffinity:
+        # podAffinity:
+        #     requiredDuringSchedulingIgnoredDuringExecution:
+        #     - labelSelector:
+        #         matchExpressions:
+        #         - key: app
+        #           operator: In
+        #           values:
+        #           - college-app
+        #       topologyKey: "kubernetes.io/hostname"
+        podAntiAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchExpressions:
@@ -29,6 +38,7 @@ spec:
                   values:
                   - college-app
               topologyKey: "kubernetes.io/hostname"
+        
       terminationGracePeriodSeconds: 10
       containers:
       - name: mysql-cont
