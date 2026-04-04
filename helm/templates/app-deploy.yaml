@@ -18,6 +18,8 @@ spec:
       labels:
         app: college-app  
     spec: 
+      nodeSelector:
+        training: devops
       containers:
       - name: app
         image: {{.Values.image.repository}}:{{.Values.image.tag}}
