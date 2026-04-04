@@ -19,7 +19,7 @@ spec:
         app: college-app  
     spec: 
       nodeSelector:
-        env: devops
+        abc: xyz
       containers:
       - name: app
         image: {{.Values.image.repository}}:{{.Values.image.tag}}
