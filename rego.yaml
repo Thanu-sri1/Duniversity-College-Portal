@@ -11,9 +11,12 @@ spec:
     - target: admission.k8s.gatekeeper.sh
       rego: |
         package k8srequiredresources
- 
+
         violation[{"msg": msg}] {
           container := input.review.object.spec.containers[_]
-          not container.resources.limits
+          not has_limits(container)
           msg := sprintf("Container %v must have resource limits", [container.name])
+        }
+        has_limits(c) {
+          c.resources.limits
         }
