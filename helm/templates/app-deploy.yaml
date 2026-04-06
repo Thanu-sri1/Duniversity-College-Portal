@@ -22,7 +22,7 @@ spec:
       - key: "abc"
         operator: "Equal"
         value: "xyz"
-        effect: "NoSchedule"
+        effect: "PreferNoSchedule"
       # affinity:
       #     nodeAffinity:
       #       requiredDuringSchedulingIgnoredDuringExecution:
