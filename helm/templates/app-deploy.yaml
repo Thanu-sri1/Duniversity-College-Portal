@@ -18,23 +18,28 @@ spec:
       labels:
         app: college-app  
     spec: 
-      affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: abc
-                      operator: In
-                      values:
-                        - xyz 
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 1
-                preference:
-                  matchExpressions:
-                    - key: abc
-                      operator: In
-                      values:
-                        - xyz           
+      tolerations:
+      - key: "abc"
+        operator: "Equal"
+        value: "xyz"
+        effect: "NoSchedule"
+      # affinity:
+      #     nodeAffinity:
+      #       requiredDuringSchedulingIgnoredDuringExecution:
+      #         nodeSelectorTerms:
+      #           - matchExpressions:
+      #               - key: abc
+      #                 operator: In
+      #                 values:
+      #                   - xyz 
+      #       preferredDuringSchedulingIgnoredDuringExecution:
+      #         - weight: 1
+      #           preference:
+      #             matchExpressions:
+      #               - key: abc
+      #                 operator: In
+      #                 values:
+      #                   - xyz           
       containers:
       - name: app
         image: {{.Values.image.repository}}:{{.Values.image.tag}}
