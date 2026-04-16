@@ -6,7 +6,7 @@ metadata:
  
 spec:
   parentRefs:
-    - name: newkgateway
+    - name: newkgateway1
   rules: #path based routing
     - matches:
       - path:

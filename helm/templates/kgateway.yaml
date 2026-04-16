@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: newkgateway
+  name: newkgateway1
   namespace: thanu-ns1
 spec:
   gatewayClassName: kgateway
