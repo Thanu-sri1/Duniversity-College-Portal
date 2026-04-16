@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Thanu-sri1/Duniversity-College-Portal
-    targetRevision: main
+    targetRevision: master
     path: helm
     helm:
       values: |
